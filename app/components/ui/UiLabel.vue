@@ -1,0 +1,52 @@
+<template>
+  <div :class="['ui-label', `ui-label_${color}`]">
+    <Icon :name="icon" class="ui-label__icon" />
+    <h6 class="ui-label__title">{{ title }}</h6>
+  </div>
+</template>
+
+<script setup lang="ts">
+type UiLabelColor = 'gray' | 'white';
+
+defineProps<{
+  title: string;
+  icon: string;
+  color: UiLabelColor;
+}>();
+</script>
+
+<style scoped lang="scss">
+$icon-size: 12px;
+
+.ui-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 2px 10px;
+  border-radius: 12px;
+
+  &_white {
+    background-color: $white;
+    color: $gray-full-dark-3;
+    border: 1px solid $border-gray;
+  }
+
+  &_gray {
+    background-color: $gray-light-3;
+    color: $gray-full-dark-3;
+  }
+
+  &__icon {
+    width: $icon-size;
+    height: $icon-size;
+    margin-right: 4px;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+</style>

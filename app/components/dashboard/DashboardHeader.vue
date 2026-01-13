@@ -2,7 +2,7 @@
   <header class="dashboard-header">
     <div class="dashboard-header__text-wrapper">
       <button class="dashboard-header__panel-button">
-        <Icon name="icon:panel" class="dashboard-header__panel-icon" />
+        <icon name="icon:panel" class="dashboard-header__panel-icon" />
       </button>
       <h3 class="dashboard-header__title">LIVI_PRO Platform</h3>
       <p class="dashboard-header__description">Панель управления ИИ-ассистентами</p>
@@ -10,7 +10,7 @@
 
     <div class="dashboard-header__profile-wrapper">
       <button class="dashboard-header__bell-button">
-        <Icon name="icon:bell" class="dashboard-header__bell-icon" />
+        <icon name="icon:bell" class="dashboard-header__bell-icon" />
       </button>
 
       <div class="dashboard-header__profile-icon-wrapper">{{ userFullName?.substring(0, 1) }}</div>

@@ -3,7 +3,7 @@
     <p class="dashboard-sidebar-footer__full-name">{{ userFullName }}</p>
     <p class="dashboard-sidebar-footer__email">{{ userEmail }}</p>
     <button class="dashboard-sidebar-footer__logout-button" @click="logout">
-      <Icon name="icon:logout" class="dashboard-sidebar-footer__logout-button-icon" />
+      <icon name="icon:logout" class="dashboard-sidebar-footer__logout-button-icon" />
       <span class="dashboard-sidebar-footer__logout-button-value">Выйти</span>
     </button>
   </footer>

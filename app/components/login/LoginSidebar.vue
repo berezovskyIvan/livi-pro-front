@@ -1,7 +1,7 @@
 <template>
   <aside class="login-sidebar">
     <ui-round-button class="login-sidebar__back-btn" href="/">
-      <Icon name="icon:arrow-left" class="login-sidebar__back-btn-icon" />
+      <icon name="icon:arrow-left" class="login-sidebar__back-btn-icon" />
     </ui-round-button>
     <h1 class="login-sidebar__title">Добро пожаловать в<br>LIVI-PRO</h1>
     <p class="login-sidebar__description">Индивидуальные ИИ-ассистенты для клиник</p>
@@ -12,7 +12,7 @@
         class="login-sidebar__feature"
       >
         <div class="login-sidebar__feature-icon-wrapper">
-          <Icon name="icon:check" class="login-sidebar__feature-icon" />
+          <icon name="icon:check" class="login-sidebar__feature-icon" />
         </div>
         <span class="login-sidebar__feature-value">{{ item }}</span>
       </li>

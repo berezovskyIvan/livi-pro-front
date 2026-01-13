@@ -30,7 +30,7 @@
         <span class="login-form__label">Пароль</span>
         <ui-input v-model="password" :type="passwordInputType" placeholder="Введите пароль" class="login-form__input">
           <template #append>
-            <Icon class="login-form__input-eye-icon" :name="passwordInputIcon" @click="changePasswordVisibility" />
+            <icon class="login-form__input-eye-icon" :name="passwordInputIcon" @click="changePasswordVisibility" />
           </template>
         </ui-input>
       </div>
@@ -39,7 +39,7 @@
       <ui-button type="submit" :title="submitButtonTitle" class="login-form__submit-btn" />
       <button v-if="formType === 'auth'" type="button" class="login-form__register-btn" @click="showRegisterForm">Регистрация</button>
       <button v-if="formType === 'register'" type="button" class="login-form__auth-back-btn" @click="showAuthForm">
-        <Icon name="icon:lucide-arrow-left" class="login-form__auth-back-btn-icon" />
+        <icon name="icon:lucide-arrow-left" class="login-form__auth-back-btn-icon" />
         <span>Уже есть аккуант?</span>
       </button>
     </div>

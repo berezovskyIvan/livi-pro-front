@@ -16,7 +16,7 @@
   flex-direction: column;
   box-sizing: border-box;
   background-color: $gray-dark;
-  min-height: 100vh;
+  height: 100vh;
   width: 256px;
   border-right: 1px solid $border-gray;
 }

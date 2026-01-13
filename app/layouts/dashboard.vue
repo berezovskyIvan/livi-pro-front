@@ -22,6 +22,7 @@
 
   &__sidebar {
     grid-area: sidebar;
+    position: fixed;
   }
 
   &__header {

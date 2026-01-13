@@ -7,24 +7,24 @@
         :class="['dashboard-sidebar-control-panel__tab', { 'dashboard-sidebar-control-panel__tab_active': isActiveTab(tab.routeName) }]"
         @click="onTabClick(tab.routeName)"
       >
-          <Icon v-if="tab.icon" :name="tab.icon" class="dashboard-sidebar-control-panel__tab-icon" />
-          <span class="dashboard-sidebar-control-panel__tab-value">{{ tab.value }}</span>
-          <Icon
-            v-if="tab.children"
-            name="icon:arrow-right"
-            :class="['dashboard-sidebar-control-panel__tab-arrow-icon', { 'dashboard-sidebar-control-panel__tab-arrow-icon_is-open': isOpenDialogsTab }]"
-          />
+        <icon v-if="tab.icon" :name="tab.icon" class="dashboard-sidebar-control-panel__tab-icon" />
+        <span class="dashboard-sidebar-control-panel__tab-value">{{ tab.value }}</span>
+        <icon
+          v-if="tab.children"
+          name="icon:arrow-right"
+          :class="['dashboard-sidebar-control-panel__tab-arrow-icon', { 'dashboard-sidebar-control-panel__tab-arrow-icon_is-open': isOpenDialogsTab }]"
+        />
       </component>
 
       <div v-if="isOpenDialogsTab" class="dashboard-sidebar-control-panel__tab-child-wrapper">
         <component
-            v-for="(childTab, childIndex) in tab.children"
-            :key="childIndex"
-            :is="childTab.is"
-            :class="['dashboard-sidebar-control-panel__tab-child', { 'dashboard-sidebar-control-panel__tab-child_active': isActiveTab(childTab.routeName) }]"
-            @click="onTabClick(childTab.routeName)"
+          v-for="(childTab, childIndex) in tab.children"
+          :key="childIndex"
+          :is="childTab.is"
+          :class="['dashboard-sidebar-control-panel__tab-child', { 'dashboard-sidebar-control-panel__tab-child_active': isActiveTab(childTab.routeName) }]"
+          @click="onTabClick(childTab.routeName)"
         >
-          <Icon v-if="childTab.icon" :name="childTab.icon" class="dashboard-sidebar-control-panel__tab-child-icon" />
+          <icon v-if="childTab.icon" :name="childTab.icon" class="dashboard-sidebar-control-panel__tab-child-icon" />
           <span class="dashboard-sidebar-control-panel__tab-child-value">{{ childTab.value }}</span>
         </component>
       </div>

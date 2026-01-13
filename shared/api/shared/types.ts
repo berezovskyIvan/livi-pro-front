@@ -1,8 +1,8 @@
-export interface PaginationWrapper<T> {
+export interface PaginationWrapperResponse<T> {
   currentPage: number;
-  totalPages: number;
-  totalItems: number;
   itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
   items: T[];
 }
 

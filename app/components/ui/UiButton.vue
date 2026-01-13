@@ -1,6 +1,7 @@
 <template>
   <component :is v-bind="attrs" :class="['ui-button', { disabled }]">
-    <span v-if="title" class="ui-button__value">{{ title }}</span>
+    <ui-loader v-if="loading" color="white" />
+    <span v-else-if="title" class="ui-button__value">{{ title }}</span>
   </component>
 </template>
 
@@ -12,6 +13,7 @@ const props = defineProps<{
   href?: string;
   disabled?: boolean;
   title?: string;
+  loading?: boolean;
 }>();
 
 const is = computed(() => {

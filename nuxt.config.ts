@@ -25,6 +25,7 @@ export default defineNuxtConfig({
   alias: {
     assets: fileURLToPath(new URL('./app/assets', import.meta.url)),
     'business-modules': fileURLToPath(new URL('./app/business-modules', import.meta.url)),
+    components: fileURLToPath(new URL('./app/components', import.meta.url)),
   },
   vite: {
     css: {
