@@ -125,7 +125,7 @@ const clearFile = () => {
   &__preview-image {
     max-width: 140px;
     border-radius: 8px;
-    border: 2px solid #e5e7eb;
+    border: 2px solid $border-gray;
   }
 
   &__remove-btn {

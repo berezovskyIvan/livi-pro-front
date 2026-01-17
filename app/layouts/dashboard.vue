@@ -31,6 +31,8 @@
 
   &__main {
     grid-area: main;
+    display: flex;
+    justify-content: center;
   }
 }
 </style>

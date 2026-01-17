@@ -7,6 +7,7 @@ export default {
     'alpha-value-notation': null,
     'color-hex-length': 'long',
     'color-function-notation': 'legacy',
+    'color-function-alias-notation': null,
     'font-family-name-quotes': 'always-unless-keyword',
     'selector-class-pattern': null,
     'no-empty-source': null,

@@ -25,6 +25,7 @@ await useAsyncData(() => dialogsStore.list({ page: 1, perPage: 12 }));
 
 <style scoped lang="scss">
 .chats-page {
+  width: 100%;
   padding: 24px;
 
   &__title {
