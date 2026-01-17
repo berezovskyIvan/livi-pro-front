@@ -12,11 +12,11 @@
           :key="item.id"
           :class="[
             'chat-modal__message',
-            { 'chat-modal__message_client': item.senderRole === 'client' },
-            { 'chat-modal__message_clinic': item.senderRole === 'clinic' },
+            { 'chat-modal__message_client': isClient(item.senderRole) },
+            { 'chat-modal__message_clinic': isClinic(item.senderRole) },
           ]"
         >
-          <div v-if="item.senderRole === 'client'" class="chat-modal__message-icon-wrapper">
+          <div v-if="isClient(item.senderRole)" class="chat-modal__message-icon-wrapper">
             <icon name="icon:user" class="chat-modal__message-icon chat-modal__message-icon_user" />
           </div>
           <div class="chat-modal__message-text">
@@ -25,7 +25,7 @@
 
           <span class="chat-modal__message-created-at">{{ formatDate(item.createdAt) }}</span>
 
-          <div v-if="item.senderRole === 'clinic'" class="chat-modal__message-icon-wrapper">
+          <div v-if="isClinic(item.senderRole)" class="chat-modal__message-icon-wrapper">
             <icon name="icon:bot" class="chat-modal__message-icon chat-modal__message-icon_bot" />
           </div>
         </div>
@@ -44,6 +44,13 @@ defineProps<{
 }>();
 
 const messagesWrapper = ref<HTMLDivElement | null>(null);
+
+const isClient = (senderRole: ApiMessageResponse['senderRole']): boolean => {
+  return senderRole === 'client' || senderRole === 'user';
+}
+const isClinic = (senderRole: ApiMessageResponse['senderRole']): boolean => {
+  return senderRole === 'clinic' || senderRole === 'assistant';
+}
 
 onMounted(() => {
   if (messagesWrapper.value) {
