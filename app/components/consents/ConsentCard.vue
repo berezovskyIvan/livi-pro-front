@@ -43,6 +43,7 @@ $clock-icon-size: 14px;
 
   &:hover {
     background-color: $gray-light-3;
+    border-color: $mars-green;
   }
 
   &__header {

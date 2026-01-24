@@ -1,8 +1,7 @@
 export function formatDateManual(date: Date): string {
     const year = date.getFullYear();
-    const dayWithMonth = date.toLocaleString('ru-RU', { day: 'numeric', month: 'long' });
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+    const dayWithMonth = new Intl.DateTimeFormat('ru-RU', { day: '2-digit', month: 'long' }).format(date);
+    const minutesWithHours = new Intl.DateTimeFormat('ru-RU', { hour: '2-digit', minute: '2-digit' }).format(date);
 
-    return `${dayWithMonth} ${year}, ${hours}:${minutes}`;
+    return `${dayWithMonth} ${year}, ${minutesWithHours}`;
 }
