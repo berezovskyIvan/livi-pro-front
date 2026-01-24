@@ -20,7 +20,8 @@
 
 <script setup lang="ts">
 import type { ApiConsentResponse } from '#shared/api/consents/types';
-import {formatDateManual} from "business-modules/systemic/utils/format-date-manual";
+
+import { formatDateManual } from 'business-modules/systemic/utils/format-date-manual';
 
 defineProps<{
   consent: ApiConsentResponse;
