@@ -2,7 +2,7 @@
   <div class="dashboard-card">
     <h3 class="dashboard-card__title">{{ title }}</h3>
     <span class="dashboard-card__counter">{{ counter }}</span>
-    <icon :name="icon" class="dashboard-card__icon" />
+    <Icon :name="icon" class="dashboard-card__icon" />
   </div>
 </template>
 

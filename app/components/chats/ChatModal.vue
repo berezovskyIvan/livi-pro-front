@@ -47,10 +47,10 @@ const messagesWrapper = ref<HTMLDivElement | null>(null);
 
 const isClient = (senderRole: ApiMessageResponse['senderRole']): boolean => {
   return senderRole === 'client' || senderRole === 'user';
-}
+};
 const isClinic = (senderRole: ApiMessageResponse['senderRole']): boolean => {
   return senderRole === 'clinic' || senderRole === 'assistant';
-}
+};
 
 onMounted(() => {
   if (messagesWrapper.value) {

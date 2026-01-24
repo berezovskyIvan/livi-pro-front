@@ -33,7 +33,7 @@ definePageMeta({
   flex-direction: column;
   align-items: center;
   background-color: $white;
-  padding: 24px 16px;
+  padding: 24px;
   max-width: 1280px;
 
   &__title {

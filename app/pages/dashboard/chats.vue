@@ -20,7 +20,9 @@ definePageMeta({
   middleware: ['auth'],
 });
 
-await useAsyncData(() => dialogsStore.list({ page: 1, perPage: 12 }));
+await callOnce('dialogs-list', async () => {
+  await dialogsStore.list({ page: 1, perPage: 12 });
+});
 </script>
 
 <style scoped lang="scss">

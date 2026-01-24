@@ -1,17 +1,17 @@
 <template>
   <div :class="['ui-label', `ui-label_${color}`]">
-    <Icon :name="icon" class="ui-label__icon" />
+    <Icon v-if="icon" :name="icon" class="ui-label__icon" />
     <h6 class="ui-label__title">{{ title }}</h6>
   </div>
 </template>
 
 <script setup lang="ts">
-type UiLabelColor = 'gray' | 'white';
+type UiLabelColor = 'gray' | 'white' | 'red';
 
 defineProps<{
   title: string;
-  icon: string;
   color: UiLabelColor;
+  icon?: string;
 }>();
 </script>
 
@@ -35,6 +35,11 @@ $icon-size: 12px;
   &_gray {
     background-color: $gray-light-3;
     color: $gray-full-dark-3;
+  }
+
+  &_red {
+    background-color: $red;
+    color: $white;
   }
 
   &__icon {
