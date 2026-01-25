@@ -10,7 +10,7 @@ export interface ApiDialogResponse {
     sessionKey?: string;
     updatedAt?: string;
     userId?: string;
-    lastMessage: Pick<ApiMessageResponse, 'id' | 'createdAt' | 'bodyMain' | 'senderRole' | 'generatedAi'>;
+    lastMessage: Pick<ApiMessageResponse, 'id' | 'createdAt' | 'bodyMain' | 'senderRole' | 'generatedAi' | 'user'>;
 }
 
 export interface ApiDialogsListResponse extends PaginationWrapperResponse<ApiDialogResponse> {

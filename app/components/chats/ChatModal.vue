@@ -3,7 +3,7 @@
     <div class="chat-modal__wrapper">
       <header class="chat-modal__header">
         <icon name="icon:chat" class="chat-modal__chat-icon" />
-        <h2 class="chat-modal__title">Диалог с User</h2>
+        <h2 class="chat-modal__title">Диалог с {{ userName }}</h2>
       </header>
 
       <div class="chat-modal__messages-wrapper" ref="messagesWrapper">
@@ -35,13 +35,15 @@
 
 <script setup lang="ts">
 import MarkdownIt from 'markdown-it';
+
 import type { ApiMessageResponse } from '#shared/api/messages/types';
 
 import { formatDate } from 'business-modules/systemic/utils/format-date';
+import { getInstrumentalCaseUserName } from 'business-modules/user/utils/get-instrumental-case-user-name';
 
 const md = new MarkdownIt();
 
-defineProps<{
+const props = defineProps<{
   messages: ApiMessageResponse[] | undefined;
 }>();
 
@@ -56,10 +58,15 @@ const isClinic = (senderRole: ApiMessageResponse['senderRole']): boolean => {
 
 const getRenderedBody = (body: ApiMessageResponse['bodyMain']) => {
   if (body) {
-    return md.render(body)
+    return md.render(body);
   }
   return undefined;
-}
+};
+
+const userName = computed<string>(() => {
+  const user = props.messages?.find(message => message.user)?.user;
+  return getInstrumentalCaseUserName(user?.firstName, user?.middleName, user?.lastName);
+});
 
 onMounted(() => {
   if (messagesWrapper.value) {

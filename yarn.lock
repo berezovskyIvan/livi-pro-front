@@ -5317,6 +5317,11 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+lvovich@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/lvovich/-/lvovich-2.1.0.tgz#f64cb801bcac7760914e7b9180a696e6b16aa249"
+  integrity sha512-+dfkF0+5MKgNU/IuEtfwsodeD1snhR1DDB57KeLdH+M7TEI7OZzd4qbrAFQSzAPYNdC8mcLb+OQqvFijVrGStg==
+
 magic-regexp@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/magic-regexp/-/magic-regexp-0.10.0.tgz#78b4421a50d2b7a67129bf2c424a333927c3a0e5"

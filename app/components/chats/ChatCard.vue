@@ -6,7 +6,7 @@
 
     <div class="chat-card__content-wrapper">
       <div class="chat-card__top-content-wrapper">
-        <p class="chat-card__full-name">User</p>
+        <p class="chat-card__full-name">{{ userName }}</p>
         <ui-label v-if="dialog.lastMessage.senderRole === 'clinic'" title="Админ" icon="icon:user-cog" color="gray" class="chat-card__admin-label" />
         <ui-label v-if="dialog.lastMessage.generatedAi" title="ИИ" icon="icon:bot" color="white" class="chat-card__admin-label" />
       </div>
@@ -22,13 +22,13 @@
 </template>
 
 <script setup lang="ts">
-import MarkdownIt from 'markdown-it';
-
 import UiLabel from 'components/ui/UiLabel.vue';
+import MarkdownIt from 'markdown-it';
 
 import type { ApiDialogResponse } from '#shared/api/dialogs/types';
 
 import { formatDate } from 'business-modules/systemic/utils/format-date';
+import { getUserName } from 'business-modules/user/utils/get-user-name';
 
 const md = new MarkdownIt();
 
@@ -38,9 +38,14 @@ const props = defineProps<{
 
 const renderedBodyMain = computed<string | undefined>(() => {
   if (props.dialog.lastMessage.bodyMain) {
-    return md.render(props.dialog.lastMessage.bodyMain)
+    return md.render(props.dialog.lastMessage.bodyMain);
   }
   return undefined;
+});
+
+const userName = computed<string>(() => {
+  const user = props.dialog.lastMessage.user;
+  return getUserName(user?.firstName, user?.middleName, user?.lastName);
 });
 </script>
 
