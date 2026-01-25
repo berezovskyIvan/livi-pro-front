@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-type UiLabelColor = 'gray' | 'white' | 'red';
+import type { UiLabelColor } from 'business-modules/ui/types';
 
 defineProps<{
   title: string;
@@ -35,6 +35,11 @@ $icon-size: 12px;
   &_gray {
     background-color: $gray-light-3;
     color: $gray-full-dark-3;
+  }
+
+  &_mars-green {
+    color: $white;
+    background-color: $mars-green;
   }
 
   &_red {

@@ -1,3 +1,3 @@
 export interface ApiEmptyResponse {
-    status: string;
+    ok: boolean;
 }

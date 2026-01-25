@@ -5,6 +5,7 @@
       :key="consent.id"
       :consent
       class="consents-list__item"
+      @click="openConsentModal(consent)"
     />
 
     <ui-button
@@ -14,18 +15,27 @@
       :loading="loadConsentsButtonLoading"
       @click="loadMoreConsents"
     />
+
+    <consent-modal
+      v-if="showConsentModal && activeConsent"
+      :consent="activeConsent"
+      @close="closeConsentModal"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import ConsentCard from 'components/consents/ConsentCard.vue';
+import ConsentModal from 'components/consents/ConsentModal.vue';
 
-import type { ApiConsentsListResponse } from '#shared/api/consents/types';
+import type { ApiConsentResponse, ApiConsentsListResponse } from '#shared/api/consents/types';
 
 import { useConsentsStore } from '#imports';
 
 const consentsStore = useConsentsStore();
 const loadConsentsButtonLoading = ref<boolean>(false);
+const showConsentModal = ref<boolean>(false);
+const activeConsent = ref<ApiConsentResponse | undefined>(undefined);
 
 const consents = computed<ApiConsentsListResponse['items'] | undefined>(() => consentsStore.items);
 const consentsCurrentPage = computed<ApiConsentsListResponse['currentPage']>(() => consentsStore.currentPage ?? 0);
@@ -39,6 +49,16 @@ const loadMoreConsents = () => {
   consentsStore.list({ page: consentsCurrentPage.value + 1, perPage: 12 }).finally(() => {
     loadConsentsButtonLoading.value = false;
   });
+};
+
+const openConsentModal = (consent: ApiConsentResponse) => {
+  activeConsent.value = consent;
+  showConsentModal.value = true;
+};
+
+const closeConsentModal = () => {
+  activeConsent.value = undefined;
+  showConsentModal.value = false;
 };
 </script>
 

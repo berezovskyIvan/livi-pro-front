@@ -1,10 +1,13 @@
-import type { ApiConsentsListResponse } from '#shared/api/consents/types';
+import type { ApiConsentsIdPayload, ApiConsentsListResponse } from '#shared/api/consents/types';
 import type { PaginationPayload } from '#shared/api/shared/types';
 
-const apiHost = 'https://api-dev.livi-pro.ru';
+import type { ApiEmptyResponse } from 'business-modules/systemic/types';
 
 export const consentsApi = {
     list(payload: PaginationPayload): Promise<ApiConsentsListResponse> {
-        return $fetch(`${apiHost}/v1/consents/list?page=${payload.page}&perPage=${payload.perPage}`);
+        return $fetch(`/api/consents/list?page=${payload.page}&perPage=${payload.perPage}`);
+    },
+    withdraw(payload: ApiConsentsIdPayload): Promise<ApiEmptyResponse> {
+        return $fetch(`/api/consents/withdraw/${payload.consentId}`, { method: 'PATCH' });
     },
 };

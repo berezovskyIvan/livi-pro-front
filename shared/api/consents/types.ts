@@ -11,3 +11,7 @@ export interface ApiConsentResponse {
 export interface ApiConsentsListResponse extends PaginationWrapperResponse<ApiConsentResponse> {
     items: ApiConsentResponse[];
 }
+
+export interface ApiConsentsIdPayload {
+    consentId: number;
+}
