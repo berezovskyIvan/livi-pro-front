@@ -11,7 +11,7 @@
         <ui-label v-if="dialog.lastMessage.generatedAi" title="ИИ" icon="icon:bot" color="white" class="chat-card__admin-label" />
       </div>
 
-      <p class="chat-card__description">{{ dialog.lastMessage.bodyMain }}</p>
+      <div v-html="renderedBodyMain" class="chat-card__description" />
 
       <div class="chat-card__clock">
         <icon name="icon:clock" class="chat-card__clock-icon" />
@@ -22,15 +22,26 @@
 </template>
 
 <script setup lang="ts">
+import MarkdownIt from 'markdown-it';
+
 import UiLabel from 'components/ui/UiLabel.vue';
 
 import type { ApiDialogResponse } from '#shared/api/dialogs/types';
 
 import { formatDate } from 'business-modules/systemic/utils/format-date';
 
-defineProps<{
+const md = new MarkdownIt();
+
+const props = defineProps<{
   dialog: ApiDialogResponse;
 }>();
+
+const renderedBodyMain = computed<string | undefined>(() => {
+  if (props.dialog.lastMessage.bodyMain) {
+    return md.render(props.dialog.lastMessage.bodyMain)
+  }
+  return undefined;
+});
 </script>
 
 <style scoped lang="scss">

@@ -19,9 +19,8 @@
           <div v-if="isClient(item.senderRole)" class="chat-modal__message-icon-wrapper">
             <icon name="icon:user" class="chat-modal__message-icon chat-modal__message-icon_user" />
           </div>
-          <div class="chat-modal__message-text">
-            {{ item.bodyMain }}
-          </div>
+
+          <div v-if="item.bodyMain" class="chat-modal__message-text" v-html="getRenderedBody(item.bodyMain)" />
 
           <span class="chat-modal__message-created-at">{{ formatDate(item.createdAt) }}</span>
 
@@ -35,9 +34,12 @@
 </template>
 
 <script setup lang="ts">
+import MarkdownIt from 'markdown-it';
 import type { ApiMessageResponse } from '#shared/api/messages/types';
 
 import { formatDate } from 'business-modules/systemic/utils/format-date';
+
+const md = new MarkdownIt();
 
 defineProps<{
   messages: ApiMessageResponse[] | undefined;
@@ -51,6 +53,13 @@ const isClient = (senderRole: ApiMessageResponse['senderRole']): boolean => {
 const isClinic = (senderRole: ApiMessageResponse['senderRole']): boolean => {
   return senderRole === 'clinic' || senderRole === 'assistant';
 };
+
+const getRenderedBody = (body: ApiMessageResponse['bodyMain']) => {
+  if (body) {
+    return md.render(body)
+  }
+  return undefined;
+}
 
 onMounted(() => {
   if (messagesWrapper.value) {
@@ -125,7 +134,8 @@ $user-icon-size: 16px;
 
     &-text {
       grid-area: text;
-      display: flex;
+      display: block;
+      white-space: break-spaces;
       border-radius: 12px;
       font-size: 16px;
       line-height: 24px;

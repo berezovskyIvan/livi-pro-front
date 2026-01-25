@@ -45,7 +45,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiHostInternal: 'http://localhost:3003',
+      apiHostInternal: process.env.NUXT_PUBLIC_API_HOST_INTERNAL,
     },
   },
   // image: {
