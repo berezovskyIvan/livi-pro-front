@@ -12,12 +12,12 @@
 
       <div class="consent-modal__contact-row">
         <span class="consent-modal__contact-label">Имя:</span>
-        <span class="consent-modal__contact-value">User</span>
+        <span class="consent-modal__contact-value">{{ userName }}</span>
       </div>
 
-      <div class="consent-modal__contact-row">
+      <div v-if="formatedPhone" class="consent-modal__contact-row">
         <span class="consent-modal__contact-label">Телефон:</span>
-        <span class="consent-modal__contact-value">+7 (XXX) XXX-XX-XX</span>
+        <span class="consent-modal__contact-value">{{ formatedPhone }}</span>
       </div>
 
       <div class="consent-modal__contact-row">
@@ -104,7 +104,9 @@
 import type { ApiConsentResponse } from '#shared/api/consents/types';
 
 import { formatDateManual } from 'business-modules/systemic/utils/format-date-manual';
+import { formatPhone } from 'business-modules/systemic/utils/format-phone';
 import type { UiLabelColor } from 'business-modules/ui/types';
+import { getUserName } from 'business-modules/user/utils/get-user-name';
 
 import { useConsentsStore } from '#imports';
 
@@ -115,6 +117,18 @@ const props = defineProps<{
 }>();
 
 const withdrawConsentLoadingBtn = ref<boolean>(false);
+
+const userName = computed<string>(() => {
+  const user = props.consent.user;
+  return getUserName(user?.firstName, user?.middleName, user?.lastName);
+});
+
+const formatedPhone = computed<string | undefined>(() => {
+  if (props.consent?.user?.phone) {
+    return formatPhone(props.consent.user.phone, '(NNN) NNN-NN-NN');
+  }
+  return undefined;
+});
 
 const labelTitle = computed<string>(() => {
   if (props.consent.consent) {

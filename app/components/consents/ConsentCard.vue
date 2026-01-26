@@ -2,14 +2,14 @@
   <div class="consent-card">
     <header class="consent-card__header">
       <icon name="icon:user" class="consent-card__user-icon" />
-      <span class="consent-card__user-full-name">User</span>
+      <span class="consent-card__user-full-name">{{ userName }}</span>
       <span class="consent-card__social-nickname">@user</span>
       <ui-label v-if="!consent.consent" class="consent-card__label" title="Отозвано" color="red" />
     </header>
 
     <footer class="consent-card__footer">
       <icon name="icon:phone" class="consent-card__phone-icon" />
-      <span class="consent-card__phone">+7 (XXX) XXX-XX-XX</span>
+      <span v-if="consent.user?.phone" class="consent-card__phone">{{ formatedPhone }}</span>
       <template v-if="consent.createdAt">
         <icon name="icon:clock" class="consent-card__clock-icon" />
         <span class="consent-card__created-at">{{ formatDateManual(new Date(consent.createdAt)) }}</span>
@@ -22,10 +22,24 @@
 import type { ApiConsentResponse } from '#shared/api/consents/types';
 
 import { formatDateManual } from 'business-modules/systemic/utils/format-date-manual';
+import { formatPhone } from 'business-modules/systemic/utils/format-phone';
+import { getUserName } from 'business-modules/user/utils/get-user-name';
 
-defineProps<{
+const props = defineProps<{
   consent: ApiConsentResponse;
 }>();
+
+const userName = computed<string>(() => {
+  const user = props.consent.user;
+  return getUserName(user?.firstName, user?.middleName, user?.lastName);
+});
+
+const formatedPhone = computed<string | undefined>(() => {
+  if (props.consent?.user?.phone) {
+    return formatPhone(props.consent.user.phone, '(NNN) NNN-NN-NN');
+  }
+  return undefined;
+});
 </script>
 
 <style scoped lang="scss">
@@ -65,6 +79,7 @@ $clock-icon-size: 14px;
 
   &__user-full-name {
     grid-area: user-full-name;
+    white-space: nowrap;
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
