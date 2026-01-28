@@ -109,7 +109,7 @@ $user-icon-size: 16px;
     flex-direction: column;
     overflow: auto;
     height: 400px;
-    padding-right: 4px;
+    padding-right: 8px;
 
     &::-webkit-scrollbar {
       width: 8px;

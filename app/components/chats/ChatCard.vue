@@ -83,6 +83,7 @@ $clock-icon-size: 12px;
   &__content-wrapper {
     display: flex;
     flex-direction: column;
+    width: -webkit-fill-available;
   }
 
   &__top-content-wrapper {

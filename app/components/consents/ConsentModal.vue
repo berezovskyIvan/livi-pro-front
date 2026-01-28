@@ -6,96 +6,93 @@
         Полная информация о лиде и истории диалога
       </p>
 
-      <h5 class="consent-modal__subtitle consent-modal__subtitle_contacts">
-        Контактная информация
-      </h5>
+      <div class="consent-modal__wrapper">
+        <h5 class="consent-modal__subtitle consent-modal__subtitle_contacts">
+          Контактная информация
+        </h5>
 
-      <div class="consent-modal__contact-row">
-        <span class="consent-modal__contact-label">Имя:</span>
-        <span class="consent-modal__contact-value">{{ userName }}</span>
-      </div>
-
-      <div v-if="formatedPhone" class="consent-modal__contact-row">
-        <span class="consent-modal__contact-label">Телефон:</span>
-        <span class="consent-modal__contact-value">{{ formatedPhone }}</span>
-      </div>
-
-      <div class="consent-modal__contact-row">
-        <span class="consent-modal__contact-label">Роль:</span>
-        <span class="consent-modal__contact-value">Пациент</span>
-      </div>
-
-      <hr class="consent-modal__hr" />
-
-      <div class="consent-modal__subtitle-wrapper">
-        <icon name="icon:messages" class="consent-modal__messages-icon" />
-        <h5 class="consent-modal__subtitle">История диалога</h5>
-      </div>
-
-      <div class="consent-modal__message consent-modal__message_bot">
-        <span class="consent-modal__message-source">Бот</span>
-        <span class="consent-modal__message-value">Добрый день! Для продолжения нужно ваше согласие.</span>
-      </div>
-
-      <div class="consent-modal__message consent-modal__message_patient">
-        <span class="consent-modal__message-source">Пациент</span>
-        <span class="consent-modal__message-value">Да, даю согласие</span>
-      </div>
-
-      <hr class="consent-modal__hr" />
-
-      <h5 class="consent-modal__subtitle consent-modal__subtitle_telegram">Telegram</h5>
-
-      <div class="consent-modal__contact-row">
-        <span class="consent-modal__contact-label">ID:</span>
-        <span class="consent-modal__contact-value">XXXXXXX</span>
-      </div>
-
-      <div class="consent-modal__contact-row">
-        <span class="consent-modal__contact-label">Username:</span>
-        <span class="consent-modal__contact-value">@user</span>
-      </div>
-
-      <hr class="consent-modal__hr" />
-
-      <h5 class="consent-modal__subtitle consent-modal__subtitle_source">Источник согласия</h5>
-
-      <div class="consent-modal__contact-row">
-        <span class="consent-modal__contact-label">Канал:</span>
-        <span class="consent-modal__contact-value">Web</span>
-      </div>
-
-      <div class="consent-modal__contact-row">
-        <span class="consent-modal__contact-label">Устройство:</span>
-
-        <div class="consent-modal__contact-value-wrapper">
-          <icon name="icon:monitor" class="consent-modal__contact-monitor-icon" />
-          <span class="consent-modal__contact-value">Desktop</span>
+        <div class="consent-modal__contact-row">
+          <span class="consent-modal__contact-label">Имя:</span>
+          <span class="consent-modal__contact-value">{{ userName }}</span>
         </div>
+
+        <div v-if="formatedPhone" class="consent-modal__contact-row">
+          <span class="consent-modal__contact-label">Телефон:</span>
+          <span class="consent-modal__contact-value">{{ formatedPhone }}</span>
+        </div>
+
+        <div class="consent-modal__contact-row">
+          <span class="consent-modal__contact-label">Роль:</span>
+          <span class="consent-modal__contact-value">Пациент</span>
+        </div>
+
+        <hr class="consent-modal__hr" />
+
+        <div class="consent-modal__subtitle-wrapper">
+          <icon name="icon:messages" class="consent-modal__messages-icon" />
+          <h5 class="consent-modal__subtitle">История диалога</h5>
+        </div>
+
+        <div class="consent-modal__message consent-modal__message_bot">
+          <span class="consent-modal__message-source">Бот</span>
+          <span class="consent-modal__message-value">Добрый день! Для продолжения нужно ваше согласие.</span>
+        </div>
+
+        <div class="consent-modal__message consent-modal__message_patient">
+          <span class="consent-modal__message-source">Пациент</span>
+          <span class="consent-modal__message-value">Да, даю согласие</span>
+        </div>
+
+        <hr class="consent-modal__hr" />
+
+        <h5 class="consent-modal__subtitle consent-modal__subtitle_telegram">Telegram</h5>
+
+        <div class="consent-modal__contact-row">
+          <span class="consent-modal__contact-label">ID:</span>
+          <span class="consent-modal__contact-value">XXXXXXX</span>
+        </div>
+
+        <div class="consent-modal__contact-row">
+          <span class="consent-modal__contact-label">Username:</span>
+          <span class="consent-modal__contact-value">@user</span>
+        </div>
+
+        <hr class="consent-modal__hr" />
+
+        <h5 class="consent-modal__subtitle consent-modal__subtitle_source">Источник согласия</h5>
+
+        <div class="consent-modal__contact-row">
+          <span class="consent-modal__contact-label">Канал:</span>
+          <span class="consent-modal__contact-value">Web</span>
+        </div>
+
+        <div class="consent-modal__contact-row">
+          <span class="consent-modal__contact-label">Устройство:</span>
+
+          <div class="consent-modal__contact-value-wrapper">
+            <icon name="icon:monitor" class="consent-modal__contact-monitor-icon" />
+            <span class="consent-modal__contact-value">Desktop</span>
+          </div>
+        </div>
+
+        <div v-if="consent.createdAt" class="consent-modal__contact-row">
+          <span class="consent-modal__contact-label">Дата согласия:</span>
+          <span class="consent-modal__contact-value">{{ formatDateManual(new Date(consent.createdAt)) }}</span>
+        </div>
+
+        <hr class="consent-modal__hr" />
+
+        <h5 class="consent-modal__subtitle consent-modal__subtitle_status">Статус согласия</h5>
+        <ui-label class="consent-modal__label" :title="labelTitle" :color="labelColor" />
+        <ui-button
+            v-if="consent.consent"
+            color="red"
+            class="consent-modal__btn"
+            title="Отозвать согласие"
+            :loading="withdrawConsentLoadingBtn"
+            @click="withdrawConsent"
+        />
       </div>
-
-      <div class="consent-modal__contact-row">
-        <span class="consent-modal__contact-label">IP адрес:</span>
-        <span class="consent-modal__contact-value">XXX.XXX.X.XXX</span>
-      </div>
-
-      <div v-if="consent.createdAt" class="consent-modal__contact-row">
-        <span class="consent-modal__contact-label">Дата согласия:</span>
-        <span class="consent-modal__contact-value">{{ formatDateManual(new Date(consent.createdAt)) }}</span>
-      </div>
-
-      <hr class="consent-modal__hr" />
-
-      <h5 class="consent-modal__subtitle consent-modal__subtitle_status">Статус согласия</h5>
-      <ui-label class="consent-modal__label" :title="labelTitle" :color="labelColor" />
-      <ui-button
-        v-if="consent.consent"
-        color="red"
-        class="consent-modal__btn"
-        title="Отозвать согласие"
-        :loading="withdrawConsentLoadingBtn"
-        @click="withdrawConsent"
-      />
     </div>
   </ui-modal>
 </template>
@@ -177,6 +174,23 @@ $monitor-icon-size: 12px;
     line-height: 20px;
     color: $gray-light;
     margin-bottom: 24px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    max-height: 400px;
+    padding-right: 8px;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+
+      &-thumb {
+        background-color: $border-gray;
+        border-radius: 4px;
+      }
+    }
   }
 
   &__subtitle-wrapper {
